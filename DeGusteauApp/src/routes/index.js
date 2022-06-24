@@ -9,7 +9,7 @@ export function Routes(){
     return(
         <NavigationContainer>
             
-            <TabRoutes/>
+            <StackRoutes/>
         </NavigationContainer>
     )
 }
