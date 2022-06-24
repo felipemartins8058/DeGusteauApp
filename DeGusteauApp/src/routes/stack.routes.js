@@ -7,6 +7,7 @@ const {Screen, Navigator} = createNativeStackNavigator();
 
 import {ScreenA} from '../screens/ScreenA';
 import {ScreenB} from '../screens/ScreenB';
+import {ScreenC} from '../screens/ScreenC';
 import {OnBoardingScreen} from '../screens/OnBoardingScreen';
 
 import { TabRoutes } from './tab.routes'
@@ -34,6 +35,9 @@ export function StackRoutes() {
           <Screen name="OnBoardingScreen" component={OnBoardingScreen} />
         )}
         <Screen name="Home" component={TabRoutes} />
+        <Screen name="ScreenA" component={ScreenA} />
+        <Screen name="ScreenB" component={ScreenB} />
+        <Screen name="ScreenC" component={ScreenC} />
       </Navigator>
     )
   );
