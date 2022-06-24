@@ -11,13 +11,18 @@ import {OnBoardingScreen} from '../screens/OnBoardingScreen';
 
 export function StackRoutes() {
   [isAppFirstLauched, setIsAppFirstLauched] = React.useState(null);
-  React.useEffect(async () => {
-    const appData = await AsyncStorage.setItem('isAppFirstLauched', 'false');
-    if (appData == null) {
-      setIsAppFirstLauched(true);
-    } else {
-      setIsAppFirstLauched(false);
+  React.useEffect(() => {
+    async function isFirstLaunch() {
+      const appData = await AsyncStorage.getItem('isAppFirstLauched');
+      if (appData == null) {
+        setIsAppFirstLauched(true);
+        AsyncStorage.setItem('isAppFirstLauched', 'false')
+      } else {
+        setIsAppFirstLauched(false);
+      }
     }
+
+    isFirstLaunch()
   }, []);
 
   return (
