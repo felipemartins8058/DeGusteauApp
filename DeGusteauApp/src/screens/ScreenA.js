@@ -81,7 +81,15 @@ export function ScreenA({navigation}) {
             data={receitasData}
             keyExtractor={({ id }, index) => id}
             renderItem={({ item }) => (
-              <Text>{item.id}. {item.nome}</Text>
+              <>
+              <Text>{item.id}.{item.nome}</Text>
+              <Button
+                onPress={() =>
+                  navigation.navigate('ScreenC', { id_receita: item.id })
+                }
+                title="ir para a receita"
+              />
+              </>
             )}
           />
         )}
