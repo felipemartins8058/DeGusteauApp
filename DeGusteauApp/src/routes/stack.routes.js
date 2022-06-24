@@ -10,6 +10,8 @@ import {ScreenB} from '../screens/ScreenB';
 import {ScreenC} from '../screens/ScreenC';
 import {OnBoardingScreen} from '../screens/OnBoardingScreen';
 
+import { TabRoutes } from './tab.routes'
+
 export function StackRoutes() {
   [isAppFirstLauched, setIsAppFirstLauched] = React.useState(null);
   React.useEffect(() => {
@@ -32,6 +34,7 @@ export function StackRoutes() {
         {isAppFirstLauched && (
           <Screen name="OnBoardingScreen" component={OnBoardingScreen} />
         )}
+        <Screen name="Home" component={TabRoutes} />
         <Screen name="ScreenA" component={ScreenA} />
         <Screen name="ScreenB" component={ScreenB} />
         <Screen name="ScreenC" component={ScreenC} />

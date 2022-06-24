@@ -83,7 +83,7 @@ export function OnBoardingScreen({navigation}) {
       <View>
         {currentSlideIndex == slides.length - 1 ? (
           <View style={{height: 70}}>
-            <TouchableOpacity style={[styles.btn]} onPress={() => navigation.replace('ScreenA')}>
+            <TouchableOpacity style={[styles.btn]} onPress={() => navigation.replace('Home')}>
               <Text>Vamos cozinhar!</Text>
             </TouchableOpacity>
           </View>
