@@ -11,7 +11,6 @@ import { OnBoardingScreen } from '../screens/OnBoardingScreen';
 export function TabRoutes(){
     return(
         <Navigator screenOptions={{headerShown: false}}>
-            <Screen name="OnBoardingScreen" component={OnBoardingScreen} />
             <Screen name="ScreenA" component={ScreenA} />
             <Screen name="ScreenB" component={ScreenB} />
         </Navigator>
