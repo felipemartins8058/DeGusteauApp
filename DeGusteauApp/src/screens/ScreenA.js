@@ -7,7 +7,7 @@ export function ScreenA({navigation}) {
   }
 
   return (
-    <View style={{flex: 1, backgroundColor: 'red'}}>
+    <View style={{flex: 1, justifyContent: 'center', backgroundColor: 'red'}}>
       <Text>Screen A</Text>
       <Button title="Go to Screen B" onPress={handleNavigateToScreenB} />
     </View>
