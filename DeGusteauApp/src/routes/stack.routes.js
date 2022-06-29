@@ -30,14 +30,11 @@ export function StackRoutes() {
 
   return (
     isAppFirstLauched != null && (
-      <Navigator>
+      <Navigator screenOptions={{headerShown: false}}>
         {isAppFirstLauched && (
           <Screen name="OnBoardingScreen" component={OnBoardingScreen} />
         )}
         <Screen name="Home" component={TabRoutes} />
-        <Screen name="ScreenA" component={ScreenA} />
-        <Screen name="ScreenB" component={ScreenB} />
-        <Screen name="ScreenC" component={ScreenC} />
       </Navigator>
     )
   );
