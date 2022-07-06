@@ -1,10 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
-import {View, Text, StyleSheet, Button, FlatList, ActivityIndicator} from 'react-native';
+import {View, Text, StyleSheet, Button, FlatList, ActivityIndicator, StatusBar} from 'react-native';
 
-export function ScreenA({navigation}) {
-  function handleNavigateToScreenB() {
-    navigation.navigate('ScreenB');
+export function HomeScreen({navigation}) {
+  function handleNavigateToSelectIngredientsScreen() {
+    navigation.navigate('SelectIngredientsScreen');
   }
 
   const [isLoadingPref, setLoadingPref] = useState(true);
@@ -18,7 +18,7 @@ export function ScreenA({navigation}) {
 
   const getPreferencias = async () => {
      try {
-      const response = await fetch('http://192.168.18.4:5000/preferencias');
+      const response = await fetch('http://192.168.18.5:5000/preferencias');
       const json = await response.json();
       setPrefData(json);
     } catch (error) {
@@ -30,7 +30,7 @@ export function ScreenA({navigation}) {
 
   const getReceitas = async () => {
     try {
-     const response = await fetch('http://192.168.18.4:5000/receitas', {
+     const response = await fetch('http://192.168.18.5:5000/receitas', {
        method: 'POST',
        headers: {
          Accept: 'application/json',
@@ -58,9 +58,9 @@ export function ScreenA({navigation}) {
   }, []);
 
   return (
-    <View style={{flex: 1, justifyContent: 'center', backgroundColor: 'red'}}>
+    <View style={{flex: 1, justifyContent: 'center', backgroundColor: '#fff'}}>
       <Text>Screen A</Text>
-      <Button title="Go to Screen B" onPress={handleNavigateToScreenB} />
+      <Button title="Go to Screen B" onPress={handleNavigateToSelectIngredientsScreen} />
       <View style={{ flex: 1, padding: 24 }}>
         <Text>Todas as preferencias</Text>
         {isLoadingPref ? <ActivityIndicator/> : (
@@ -85,7 +85,7 @@ export function ScreenA({navigation}) {
               <Text>{item.id}.{item.nome}</Text>
               <Button
                 onPress={() =>
-                  navigation.navigate('ScreenC', { id_receita: item.id })
+                  navigation.navigate('RecipeScreen', { id_receita: item.id })
                 }
                 title="ir para a receita"
               />

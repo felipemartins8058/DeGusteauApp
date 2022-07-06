@@ -2,9 +2,9 @@
 import React, { useEffect, useState } from 'react';
 import { View, Text, StyleSheet, Button, ActivityIndicator, FlatList } from 'react-native';
 
-export function ScreenC({navigation,route}) {
-  function handleNavigateToScreenA() {
-    navigation.navigate('ScreenA');
+export function RecipeScreen({navigation,route}) {
+  function handleNavigateToHomeScreen() {
+    navigation.navigate('HomeScreen');
   }
 
   const [isLoadingReceita, setLoadingReceita] = useState(true);
@@ -13,7 +13,7 @@ export function ScreenC({navigation,route}) {
 
   const getReceita = async () => {
     try {
-     const response = await fetch(`http://192.168.18.4:5000/receitas/${route.params.id_receita}`, {
+     const response = await fetch(`http://192.168.18.5:5000/receitas/${route.params.id_receita}`, {
        method: 'GET',
        headers: {
          Accept: 'application/json',
@@ -34,9 +34,9 @@ export function ScreenC({navigation,route}) {
   }, []);
 
   return (
-    <View style={{flex: 1, backgroundColor: 'blue'}}>
+    <View style={{flex: 1, backgroundColor: '#fff'}}>
       <Text>Screen C</Text>
-      <Button title="Go to Screen A" onPress={handleNavigateToScreenA} />
+      <Button title="Go to Screen A" onPress={handleNavigateToHomeScreen} />
 
       <View style={{ flex: 1, padding: 24 }}>
         <Text>Receita:</Text>

@@ -5,9 +5,9 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 
 const {Screen, Navigator} = createNativeStackNavigator();
 
-import {ScreenA} from '../screens/ScreenA';
-import {ScreenB} from '../screens/ScreenB';
-import {ScreenC} from '../screens/ScreenC';
+import {HomeScreen} from '../screens/HomeScreen';
+import {SelectIngredientsScreen} from '../screens/SelectIngredientsScreen';
+import {RecipeScreen} from '../screens/RecipeScreen';
 import {OnBoardingScreen} from '../screens/OnBoardingScreen';
 
 import { TabRoutes } from './tab.routes'
@@ -30,14 +30,11 @@ export function StackRoutes() {
 
   return (
     isAppFirstLauched != null && (
-      <Navigator>
+      <Navigator screenOptions={{headerShown: false}}>
         {isAppFirstLauched && (
           <Screen name="OnBoardingScreen" component={OnBoardingScreen} />
         )}
-        <Screen name="Home" component={TabRoutes} />
-        <Screen name="ScreenA" component={ScreenA} />
-        <Screen name="ScreenB" component={ScreenB} />
-        <Screen name="ScreenC" component={ScreenC} />
+        <Screen name="HomeRoute" component={TabRoutes} />
       </Navigator>
     )
   );
