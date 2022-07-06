@@ -1,23 +1,50 @@
 import React from 'react';
 
-import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
+import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
+import Icon from 'react-native-vector-icons/Feather';
 
-const { Screen, Navigator } = createBottomTabNavigator();
+const {Screen, Navigator} = createBottomTabNavigator();
 
-import { StackReceitas } from './receitas.routes';
+import {StackReceitas} from './receitas.routes';
 
-import { ScreenA } from '../screens/ScreenA';
-import { ScreenB } from '../screens/ScreenB';
-import { ScreenC } from '../screens/ScreenC'
-import { OnBoardingScreen } from '../screens/OnBoardingScreen';
+import {HomeScreen} from '../screens/HomeScreen';
+import {SelectIngredientsScreen} from '../screens/SelectIngredientsScreen';
+import {RecipeScreen} from '../screens/RecipeScreen';
+import {OnBoardingScreen} from '../screens/OnBoardingScreen';
 
-export function TabRoutes(){
-    return(
-        <Navigator screenOptions={{headerShown: false}}>
-            <Screen name="Receitas" component={StackReceitas} />
-            {/* <Screen name="ScreenA" component={ScreenA} /> */}
-            <Screen name="ScreenB" component={ScreenB} />
-            {/* <Screen name="ScreenC" component={ScreenC} /> */}
-        </Navigator>
-    )
+export function TabRoutes() {
+  return (
+    <Navigator
+      screenOptions={{
+        headerShown: false,
+        tabBarStyle: {
+          backgroundColor: '#fff',
+          borderTopColor: 'transparent',
+          borderTopLeftRadius: 16,
+          borderTopRightRadius: 16
+        },
+        tabBarActiveTintColor: 'red',
+      }}
+      style>
+      <Screen
+        name="Receitas"
+        component={StackReceitas}
+        options={{
+          tabBarIcon: ({size, color}) => (
+            <Icon name="home" size={size} color={color} />
+          ),
+        }}
+      />
+
+      <Screen
+        name="SelectIngredientsScreen"
+        component={SelectIngredientsScreen}
+        options={{
+          tabBarIcon: ({size, color}) => (
+            <Icon name="box" size={size} color={color} />
+          ),
+        }}
+      />
+    </Navigator>
+  );
 }
