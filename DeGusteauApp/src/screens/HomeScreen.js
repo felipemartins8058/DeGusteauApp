@@ -18,7 +18,7 @@ export function HomeScreen({navigation}) {
 
   const getPreferencias = async () => {
      try {
-      const response = await fetch('http://192.168.18.5:5000/preferencias');
+      const response = await fetch('http://18.230.138.105:5000/preferencias');
       const json = await response.json();
       setPrefData(json);
     } catch (error) {
@@ -30,7 +30,7 @@ export function HomeScreen({navigation}) {
 
   const getReceitas = async () => {
     try {
-     const response = await fetch('http://192.168.18.5:5000/receitas', {
+     const response = await fetch('http://18.230.138.105:5000/receitas', {
        method: 'POST',
        headers: {
          Accept: 'application/json',
@@ -59,8 +59,8 @@ export function HomeScreen({navigation}) {
 
   return (
     <View style={{flex: 1, justifyContent: 'center', backgroundColor: '#fff'}}>
-      <Text>Screen A</Text>
-      <Button title="Go to Screen B" onPress={handleNavigateToSelectIngredientsScreen} />
+      <Text>Estou na Home</Text>
+      <Button title="Go to Screen SelectIngredients" onPress={handleNavigateToSelectIngredientsScreen} />
       <View style={{ flex: 1, padding: 24 }}>
         <Text>Todas as preferencias</Text>
         {isLoadingPref ? <ActivityIndicator/> : (
