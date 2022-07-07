@@ -9,8 +9,8 @@ export function SelectIngredientsScreen({navigation}) {
 
   return (
     <View style={{flex: 1, backgroundColor: '#fff'}}>
-      <Text>Screen B</Text>
-      <Button title="Go to Screen B" onPress={handleNavigateToHomeScreen} />
+      <Text>Estou em Selecionar Ingredientes</Text>
+      <Button title="Go to Home" onPress={handleNavigateToHomeScreen} />
     </View>
   );
 }
