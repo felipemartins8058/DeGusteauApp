@@ -166,6 +166,7 @@ export function RecipeScreen({navigation,route, navigation: { goBack }}) {
                       <View style={{ alignItems: 'center', paddingRight: 24, paddingTop: 14}}>
                           <Text style={styles.corpo}>{item.nome[0].toUpperCase() + item.nome.substring(1)}</Text>
                           <Text style={styles.corpo}>R${item.media}</Text>
+                          <Text style={styles.corpo}>{item.unidade}</Text>
                       </View>
                     </>
                   )}
