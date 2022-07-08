@@ -35,22 +35,22 @@ export function IngredientPrice({navigation,route}) {
 
     return (
         <View style={{flex: 1, backgroundColor: '#fff'}}>
-            <Text>Estou na tela do ingrediente unico :</Text>
+            <Text style={{color: '#444'}}>Estou na tela do ingrediente unico :</Text>
             <Button title="Go to Home" onPress={handleNavigateToHomeScreen} />
 
             <View style={{ flex: 1, padding: 24 }}>
-                <Text>{route.params.nome_ingrediente.toUpperCase()}:{'\n'}</Text>
+                <Text style={{color: '#444'}}>{route.params.nome_ingrediente.toUpperCase()}:{'\n'}</Text>
 
-                <Text>Locais:{'\n'}</Text>
+                <Text style={{color: '#444'}}>Locais:{'\n'}</Text>
                 {isLoadingIngrediente ? <ActivityIndicator/> : (
                 <FlatList
                     data={ingredienteData}
                     keyExtractor={({ id }, index) => id}
                     renderItem={({ item }) => (
                     <>
-                    <Text>• {item.nome}</Text>
-                    <Text>R$ {item.valor} - {item.unidade}</Text>
-                    <Text>{item.local_logradouro}, {item.local_numero}{'\n'}</Text>
+                    <Text style={{color: '#444'}} >• {item.nome}</Text>
+                    <Text style={{color: '#444'}} >R$ {item.valor} - {item.unidade}</Text>
+                    <Text style={{color: '#444'}} >{item.local_logradouro}, {item.local_numero}{'\n'}</Text>
                     </>
                     )}
                 />

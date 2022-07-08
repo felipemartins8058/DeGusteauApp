@@ -21,7 +21,8 @@ export function TabRoutes() {
           backgroundColor: '#fff',
           borderTopColor: 'transparent',
           borderTopLeftRadius: 16,
-          borderTopRightRadius: 16
+          borderTopRightRadius: 16,
+          elevation: 0
         },
         tabBarActiveTintColor: 'red',
       }}
