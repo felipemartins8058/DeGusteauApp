@@ -5,26 +5,34 @@ import {
   StyleSheet,
   TouchableOpacity,
   ImageBackground,
+  Button,
 } from 'react-native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
-export default function ExpandableCard({nome,tempo_preparo, modoPreparo}) {
+export default function ExpandableCard({
+  id,
+  nome,
+  tempo_preparo,
+  modoPreparo,
+  ingredientes,
+  navigation,
+}) {
+  const [isExpanded, setIsExpanded] = React.useState(false);
+  const [layoutHeight, setLayoutHeight] = React.useState(160);
+  const [displayNone, setDisplayNone] = React.useState('none');
 
-  const [isExpanded, setIsExpanded] = React.useState(false)
-  const [layoutHeight, setLayoutHeight] = React.useState(160)
-
-  function expandCard(){
-    if (!isExpanded){
-      setIsExpanded(true)
-      setLayoutHeight(null)
+  function expandCard() {
+    if (!isExpanded) {
+      setIsExpanded(true);
+      setLayoutHeight(null);
+      setDisplayNone(null);
     } else {
-      setIsExpanded(false)
-      setLayoutHeight(160)
+      setIsExpanded(false);
+      setLayoutHeight(160);
+      setDisplayNone('none');
     }
   }
-
-  
 
   return (
     <View style={[styles.card, {height: layoutHeight}]}>
@@ -33,17 +41,34 @@ export default function ExpandableCard({nome,tempo_preparo, modoPreparo}) {
         style={styles.imageBackground}>
         <View style={styles.gradientView} />
         <View style={styles.timeWrapper}>
-          <Icon name='clockcircle' /><Text>{tempo_preparo}</Text>
+          <Icon style={{marginRight: 8}} name="clockcircle" size={16} />
+          <Text>{tempo_preparo}</Text>
         </View>
         <View style={styles.titleWrapper}>
-          <Text>{nome}</Text>
-          <Text>😊😋</Text>
+          <Text style={styles.cardTitle}>{nome}</Text>
+          <Text>Lanche Rápido</Text>
         </View>
       </ImageBackground>
 
-      <Text>Ola</Text>
-      <Text>Ola</Text>
-      <Text>Ola</Text>
+      <View style={{padding: 16, display: displayNone}}>
+        <Text style={styles.ingredienteTitle}>Ingredientes</Text>
+        <View style={styles.flexGrid}>
+          <View >
+            {ingredientes.map((ingrediente, key) => (
+              <Text style={styles.text} key={key}>
+                🍴 {ingrediente}
+              </Text>
+            ))}
+          </View>
+          <Button style={styles.btn}
+          color="#FDC65E"
+            onPress={() => {
+              navigation.navigate('RecipeScreen', {id_receita: id});
+            }}
+            title="Ir para a receita"
+          />
+        </View>
+      </View>
 
       <View style={styles.viewExpandBtn}>
         <TouchableOpacity style={styles.expandBtn} onPress={expandCard}>
@@ -63,11 +88,11 @@ const styles = StyleSheet.create({
   card: {
     flex: 1,
     flexDirection: 'column',
-    elevation: 2,
+    elevation: 5,
     borderRadius: 20,
-    padding: 0,
+    marginHorizontal: 16,
     marginBottom: 32,
-    backgroundColor: '#444444',
+    backgroundColor: '#fff',
     position: 'relative',
   },
   viewExpandBtn: {
@@ -98,8 +123,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     borderRadius: 20,
     overflow: 'hidden',
-    width: '100%'
-    
+    width: '100%',
   },
   gradientView: {
     position: 'absolute',
@@ -115,11 +139,34 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     padding: 8,
   },
-  timeWrapper:{
+  timeWrapper: {
     flex: 1,
+    flexDirection: 'row',
     width: '100%',
-    justifyContent: 'center',
+    justifyContent: 'flex-end',
     alignItems: 'flex-end',
+    justifyItems: 'center',
+    alignContent: 'center',
     padding: 8,
-  }
+  },
+  text: {
+    color: '#444',
+  },
+  ingredienteTitle: {
+    color: '#444',
+    fontWeight: 'bold',
+  },
+  cardTitle: {
+    fontSize: 24,
+    color: '#fff',
+    fontWeight: '900',
+  },
+  flexGrid: {
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+  },
+    btn: {
+      flex: 1,
+    }
 });

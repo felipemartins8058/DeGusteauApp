@@ -3,6 +3,7 @@ import React, { useEffect, useState } from 'react';
 import {View, Text, StyleSheet, Button, FlatList, ActivityIndicator, StatusBar, ScrollView} from 'react-native';
 
 import ExpandableCard from '../components/ExpandableCard'
+import FooterHome from '../components/FooterHome';
 import HeaderHome from '../components/HeaderHome';
 
 export function HomeScreen({navigation}) {
@@ -61,7 +62,7 @@ export function HomeScreen({navigation}) {
   }, []);
 
   return (
-    <View style={{flex: 1, backgroundColor: '#fff', paddingHorizontal: 16}}>
+    <View style={{flex: 1, backgroundColor: '#fff', paddingHorizontal: 0, overflow: 'visible'}}>
       <Text>Estou na Home</Text>
       {/* <View style={{flex: 1}}>
         <Text style={{color: '#444'}}>Todas as preferencias</Text>
@@ -80,7 +81,7 @@ export function HomeScreen({navigation}) {
         )}
       </View> */}
 
-      <View style={{flex: 1}}>
+      {/* <View style={{flex: 1}}>
         <Text>
           Todas as receitas usando como base um array fake de preferências 1 e 2
           (japonesa e brasileira)
@@ -106,21 +107,17 @@ export function HomeScreen({navigation}) {
             )}
           />
         )}
-      </View>
+      </View> */}
 
       {isLoadingReceitas ? (
         <ActivityIndicator />
       ) : (
         <FlatList
           ListHeaderComponent={<HeaderHome/>}
-          ListFooterComponent={
-            <View
-              style={{height: 1000, backgroundColor: '#000', marginBottom: 30}}
-            />
-          }
+          ListFooterComponent={<FooterHome receitasDataArray={receitasData} navigation={navigation} />}
           data={receitasData}
           keyExtractor={({id}, index) => id}
-          renderItem={({item}) => <ExpandableCard {...item} />}
+          renderItem={({item}) => <ExpandableCard {...item} navigation={navigation} />}
         />
       )}
     </View>
