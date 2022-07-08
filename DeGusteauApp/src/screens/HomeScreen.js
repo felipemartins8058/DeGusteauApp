@@ -1,6 +1,10 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
-import {View, Text, StyleSheet, Button, FlatList, ActivityIndicator, StatusBar} from 'react-native';
+import {View, Text, StyleSheet, Button, FlatList, ActivityIndicator, StatusBar, ScrollView} from 'react-native';
+
+import ExpandableCard from '../components/ExpandableCard'
+import FooterHome from '../components/FooterHome';
+import HeaderHome from '../components/HeaderHome';
 
 export function HomeScreen({navigation}) {
   function handleNavigateToSelectIngredientsScreen() {
@@ -58,42 +62,64 @@ export function HomeScreen({navigation}) {
   }, []);
 
   return (
-    <View style={{flex: 1, justifyContent: 'center', backgroundColor: '#fff'}}>
+    <View style={{flex: 1, backgroundColor: '#fff', paddingHorizontal: 0, overflow: 'visible'}}>
       <Text>Estou na Home</Text>
-      <Button title="Go to Screen SelectIngredients" onPress={handleNavigateToSelectIngredientsScreen} />
-      <View style={{ flex: 1, padding: 24 }}>
-        <Text>Todas as preferencias</Text>
-        {isLoadingPref ? <ActivityIndicator/> : (
+      {/* <View style={{flex: 1}}>
+        <Text style={{color: '#444'}}>Todas as preferencias</Text>
+        {isLoadingPref ? (
+          <ActivityIndicator />
+        ) : (
           <FlatList
             data={prefData}
-            keyExtractor={({ id }, index) => id}
-            renderItem={({ item }) => (
-              <Text>{item.id}. {item.nome}</Text>
+            keyExtractor={({id}, index) => id}
+            renderItem={({item}) => (
+              <Text style={{color: '#444'}}>
+                {item.id}. {item.nome}
+              </Text>
             )}
           />
         )}
-      </View>
+      </View> */}
 
-      <View style={{ flex: 1, padding: 24 }}>
-        <Text>Todas as receitas usando como base um array fake de preferências 1 e 2 (japonesa e brasileira)</Text>
-        {isLoadingReceitas ? <ActivityIndicator/> : (
+      {/* <View style={{flex: 1}}>
+        <Text>
+          Todas as receitas usando como base um array fake de preferências 1 e 2
+          (japonesa e brasileira)
+        </Text>
+        {isLoadingReceitas ? (
+          <ActivityIndicator />
+        ) : (
           <FlatList
             data={receitasData}
-            keyExtractor={({ id }, index) => id}
-            renderItem={({ item }) => (
+            keyExtractor={({id}, index) => id}
+            renderItem={({item}) => (
               <>
-              <Text>{item.id}.{item.nome}</Text>
-              <Button
-                onPress={() =>
-                  navigation.navigate('RecipeScreen', { id_receita: item.id })
-                }
-                title="ir para a receita"
-              />
+                <Text style={{color: '#444'}}>
+                  {item.id}.{item.nome}
+                </Text>
+                <Button
+                  onPress={() =>
+                    navigation.navigate('RecipeScreen', {id_receita: item.id})
+                  }
+                  title="ir para a receita"
+                />
               </>
             )}
           />
         )}
-      </View>
+      </View> */}
+
+      {isLoadingReceitas ? (
+        <ActivityIndicator />
+      ) : (
+        <FlatList
+          ListHeaderComponent={<HeaderHome/>}
+          ListFooterComponent={<FooterHome receitasDataArray={receitasData} navigation={navigation} />}
+          data={receitasData}
+          keyExtractor={({id}, index) => id}
+          renderItem={({item}) => <ExpandableCard {...item} navigation={navigation} />}
+        />
+      )}
     </View>
   );
 }

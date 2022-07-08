@@ -114,7 +114,7 @@ export function RecipeScreen({navigation,route}) {
             keyExtractor={({ id }, index) => id}
             renderItem={({ item }) => (
               <>
-              <Text>• {item.nome} : {item.quantidade} {item.unidade}</Text>
+              <Text style={{color: '#444'}}>• {item.nome} : {item.quantidade} {item.unidade}</Text>
               <Button
                 onPress={() =>
                   navigation.navigate('IngredientPrice', { 
