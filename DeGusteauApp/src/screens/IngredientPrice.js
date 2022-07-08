@@ -1,6 +1,6 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button, ActivityIndicator, FlatList, TouchableHighlight } from 'react-native';
+import { View, Text, StyleSheet, Button, ActivityIndicator, FlatList, TouchableHighlight, Linking } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 
 export function IngredientPrice({navigation,route, navigation: { goBack }}) {
@@ -51,9 +51,27 @@ export function IngredientPrice({navigation,route, navigation: { goBack }}) {
                     keyExtractor={({ id }, index) => id}
                     renderItem={({ item }) => (
                     <>
-                    <Text style={{color: '#444'}} >• {item.nome}</Text>
-                    <Text style={{color: '#444'}} >R$ {item.valor} - {item.unidade}</Text>
-                    <Text style={{color: '#444'}} >{item.local_logradouro}, {item.local_numero}{'\n'}</Text>
+                    <View style={{ flex: 1, width: '100%', flexDirection: 'row'}}>
+                        <View style={{ flex: 1}}>
+                            <Text style={{color: '#444', width: '85%'}} >• {item.nome}</Text>
+                            <Text style={{color: '#444', width: '85%'}} >R$ {item.valor} - {item.unidade}</Text>
+                            <Text style={{color: '#444', width: '85%'}} >{item.local_logradouro}, {item.local_numero} aaa aa aaa aa a a a {'\n'}</Text>
+                        </View>
+
+                        {/* <TouchableHighlight style={{ borderRadius: 50, padding: 8}} underlayColor="#FFEECA" activeOpacity={0.8} onPress={() => { 
+                            Linking.openURL(`https://www.google.com/maps?q=${item.geolocalizacao_lat},${item.geolocalizacao_long}`); 
+                        }}>  
+                            <Icon name='leftcircleo' color={'#F54749'} size={24} />
+                        </TouchableHighlight> */}
+                        
+                        <View style={{ alignItems: 'center'}}>
+                            <TouchableHighlight style={{ borderRadius: 50, padding: 8}} underlayColor="#FFEECA" activeOpacity={0.8} onPress={() => { 
+                                Linking.openURL(`https://maps.google.com/?q=${item.nome}${item.local_logradouro}`); 
+                            }}>  
+                                <Icon name='find' color={'#F54749'} size={30} />
+                            </TouchableHighlight>
+                        </View>
+                    </View>
                     </>
                     )}
                 />
