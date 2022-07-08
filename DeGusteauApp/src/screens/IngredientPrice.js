@@ -1,11 +1,9 @@
 /* eslint-disable prettier/prettier */
 import React, { useEffect, useState } from 'react';
-import { View, Text, StyleSheet, Button, ActivityIndicator, FlatList } from 'react-native';
+import { View, Text, StyleSheet, Button, ActivityIndicator, FlatList, TouchableHighlight } from 'react-native';
+import Icon from 'react-native-vector-icons/AntDesign';
 
-export function IngredientPrice({navigation,route}) {
-    function handleNavigateToHomeScreen() {
-        navigation.navigate('HomeScreen');
-    }
+export function IngredientPrice({navigation,route, navigation: { goBack }}) {
 
     const [isLoadingIngrediente, setLoadingIngrediente] = useState(true);
     const [ingredienteData, setIngredienteData] = useState([]);
@@ -35,13 +33,18 @@ export function IngredientPrice({navigation,route}) {
 
     return (
         <View style={{flex: 1, backgroundColor: '#fff'}}>
-            <Text style={{color: '#444'}}>Estou na tela do ingrediente unico :</Text>
-            <Button title="Go to Home" onPress={handleNavigateToHomeScreen} />
 
             <View style={{ flex: 1, padding: 24 }}>
-                <Text style={{color: '#444'}}>{route.params.nome_ingrediente.toUpperCase()}:{'\n'}</Text>
+                <View style={{ flex: 1, width: '100%', flexDirection: 'row',alignItems: 'center'}}>
+                    <TouchableHighlight style={{ borderRadius: 50, padding: 8}} underlayColor="#FFEECA" activeOpacity={0.8} onPress={() => goBack()}>  
+                        <Icon name='leftcircleo' color={'#F54749'} size={24} />
+                    </TouchableHighlight>
 
-                <Text style={{color: '#444'}}>Locais:{'\n'}</Text>
+                    <Text style={{color: '#444', fontSize: 32}}> {route.params.nome_ingrediente.toUpperCase()}:</Text>
+                </View>
+                
+
+                <Text style={{color: '#444', fontSize: 22}}>Locais:</Text>
                 {isLoadingIngrediente ? <ActivityIndicator/> : (
                 <FlatList
                     data={ingredienteData}
