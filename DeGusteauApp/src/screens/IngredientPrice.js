@@ -55,7 +55,7 @@ export function IngredientPrice({navigation,route, navigation: { goBack }}) {
                         <View style={{ flex: 1}}>
                             <Text style={{color: '#444', width: '85%'}} >• {item.nome}</Text>
                             <Text style={{color: '#444', width: '85%'}} >R$ {item.valor} - {item.unidade}</Text>
-                            <Text style={{color: '#444', width: '85%'}} >{item.local_logradouro}, {item.local_numero} aaa aa aaa aa a a a {'\n'}</Text>
+                            <Text style={{color: '#444', width: '85%'}} >{item.local_logradouro}, {item.local_numero}{'\n'}</Text>
                         </View>
 
                         {/* <TouchableHighlight style={{ borderRadius: 50, padding: 8}} underlayColor="#FFEECA" activeOpacity={0.8} onPress={() => { 
