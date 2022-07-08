@@ -9,6 +9,7 @@ import {
   FlatList,
   Image,
   TouchableOpacity,
+  ImageBackground
 } from 'react-native';
 
 const {width, height} = Dimensions.get('window');
@@ -19,20 +20,20 @@ const slides = [
   {
     id: '1',
     image: require('../images/1.png'),
-    title: 'Welcome to the app',
-    subtitle: 'This is a subtitle',
+    title: 'Nova Receita',
+    subtitle: 'Para descobrir receitas basta\n clicar no botão do meio no menu.',
   },
   {
     id: '2',
-    image: require('../images/1.png'),
-    title: 'Welcome to the app 2222',
-    subtitle: 'This is a subtitle',
+    image: require('../images/2.png'),
+    title: 'Geladeira e Lojas',
+    subtitle: 'Basta pesquisar os ingredientes \npara vir uma chuva de ofertas!',
   },
   {
     id: '3',
-    image: require('../images/1.png'),
-    title: 'Welcome to the app 3333',
-    subtitle: 'This is a subtitle',
+    image: require('../images/3.png'),
+    title: 'Outras funções',
+    subtitle: 'Pronto! Acho que expliquei tanto \nque fiquei com fome. O que tem na geladeira?',
   },
 ];
 
@@ -42,10 +43,10 @@ const Slide = ({item}) => (
       source={item.image}
       style={{height: '45%', width, resizeMode: 'contain'}}
     />
-    <Text style={{fontSize: 22, textAlign: 'center', fontWeight: 'bold'}}>
+    <Text style={{fontSize: 22, textAlign: 'center', fontWeight: 'bold', marginTop: 60, color: "#444"}}>
       {item.title}
     </Text>
-    <Text style={{fontSize: 22, textAlign: 'center', fontWeight: 'bold'}}>
+    <Text style={{fontSize: 16, textAlign: 'center', marginTop: 60, color: "#444"}}>
       {item.subtitle}
     </Text>
   </View>
@@ -74,7 +75,7 @@ export function OnBoardingScreen({navigation}) {
             style={[
               styles.indicator,
               currentSlideIndex == index && {
-                backgroundColor: 'blue',
+                backgroundColor: '#444',
                 width: 50,
               },
             ]}></View>
@@ -90,11 +91,11 @@ export function OnBoardingScreen({navigation}) {
         ) : (
           <View style={{flexDirection: 'row'}}>
             <TouchableOpacity style={[styles.btn]} onPress={skip}>
-              <Text>SKIP</Text>
+              <Text>Pular</Text>
             </TouchableOpacity>
             <View style={{width: 15}} />
             <TouchableOpacity style={[styles.btn]} onPress={goNextSlide}>
-              <Text>NEXT</Text>
+              <Text>Próximo</Text>
             </TouchableOpacity>
           </View>
         )}
@@ -124,8 +125,9 @@ export function OnBoardingScreen({navigation}) {
   };
 
   return (
-    <View style={{flex: 1, backgroundColor: COLORS.primary}}>
+    <ImageBackground source={require("../images/backonboard.png")} style={{flex: 1, backgroundColor: "#fff"}}>
       <StatusBar backgroundColor={COLORS.primary} />
+      <View style={{height: 50}} />
       <FlatList
         ref={ref}
         onMomentumScrollEnd={updateCurrentSlideIndex}
@@ -137,7 +139,7 @@ export function OnBoardingScreen({navigation}) {
         renderItem={({item}) => <Slide item={item} />}
       />
       <Footer />
-    </View>
+    </ImageBackground>
   );
 }
 
@@ -145,15 +147,15 @@ const styles = StyleSheet.create({
   indicator: {
     height: 8,
     width: 10,
-    backgroundColor: 'red',
+    backgroundColor: '#ccc',
     marginHorizontal: 3,
     borderRadius: 5,
   },
   btn: {
     flex: 1,
     height: 50,
-    borderRadius: 5,
-    backgroundColor: '#1a1c1b',
+    borderRadius: 32,
+    backgroundColor: '#F54749',
     justifyContent: 'center',
     alignItems: 'center',
     marginBottom: 16,
