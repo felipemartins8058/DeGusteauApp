@@ -3,7 +3,7 @@ import {View, StyleSheet, Text, TouchableOpacity, TextInput} from 'react-native'
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
-export default function HeaderHome() {
+export default function HeaderHome({navigation}) {
   return (
     <>
       <View style={styles.headerWrapper}>
@@ -14,7 +14,7 @@ export default function HeaderHome() {
           <Text style={styles.subtitle}>O que vamos comer hoje?</Text>
         </View>
         <View style={styles.headerContent}>
-          <TouchableOpacity style={styles.profileBtn}>
+          <TouchableOpacity style={styles.profileBtn} onPress={() => navigation.navigate('PreferenciasScreen')}>
             <Icon style={styles.iconAbsolute} name="smileo" size={50} />
             <View style={styles.gearWrapper}>
               <Icon name="setting" size={20} color={'#444'} />
