@@ -12,6 +12,8 @@ import {SelectIngredientsScreen} from '../screens/SelectIngredientsScreen';
 import {RecipeScreen} from '../screens/RecipeScreen';
 import {OnBoardingScreen} from '../screens/OnBoardingScreen';
 
+import IconMenu from '../components/IconMenu';
+
 export function TabRoutes() {
   return (
     <Navigator
@@ -41,8 +43,9 @@ export function TabRoutes() {
         name="SelectIngredientsScreen"
         component={SelectIngredientsScreen}
         options={{
+          tabBarLabel:'',
           tabBarIcon: ({size, color}) => (
-            <Icon name="box" size={size} color={color} />
+            <IconMenu/>
           ),
         }}
       />
