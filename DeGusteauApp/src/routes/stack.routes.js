@@ -9,7 +9,7 @@ import {HomeScreen} from '../screens/HomeScreen';
 import {SelectIngredientsScreen} from '../screens/SelectIngredientsScreen';
 import {RecipeScreen} from '../screens/RecipeScreen';
 import {OnBoardingScreen} from '../screens/OnBoardingScreen';
-
+import { PreferenciasScreen } from '../screens/PreferenciasScreen';
 import { TabRoutes } from './tab.routes'
 
 export function StackRoutes() {

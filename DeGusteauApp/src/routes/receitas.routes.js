@@ -7,10 +7,12 @@ const {Screen, Navigator} = createNativeStackNavigator();
 import {HomeScreen} from '../screens/HomeScreen';
 import {RecipeScreen} from '../screens/RecipeScreen';
 import {IngredientPrice} from '../screens/IngredientPrice';
+import { PreferenciasScreen } from '../screens/PreferenciasScreen';
 
 export const StackReceitas = () => {
     return (
         <Navigator screenOptions={{headerShown: false}}>
+            <Screen name="PreferenciasScreen" component={PreferenciasScreen} />
             <Screen name="HomeScreen" component={HomeScreen} />
             <Screen name="RecipeScreen" component={RecipeScreen} />
             <Screen name="IngredientPrice" component={IngredientPrice} />
