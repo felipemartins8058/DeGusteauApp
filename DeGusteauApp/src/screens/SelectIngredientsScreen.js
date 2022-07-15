@@ -9,7 +9,7 @@ import {
   ImageBackground,
   Image,
   TouchableOpacity,
-  Modal
+  Modal,
 } from 'react-native';
 import Icon from 'react-native-vector-icons/AntDesign';
 import IngredientItem from '../components/IngredientItem';
@@ -83,8 +83,16 @@ export function SelectIngredientsScreen({navigation}) {
   };
 
   const handleModal = () => {
-    modalActive ? setModalActive(false) : setModalActive(true)
-  }
+    modalActive ? setModalActive(false) : setModalActive(true);
+  };
+
+  const getIdIngredients = (choosedList) => {
+    let ingredientesArray = choosedList.map(function (a) {
+      return a.id;
+    });
+    console.log(ingredientesArray)
+    return ingredientesArray
+  };
 
   return (
     <View
@@ -94,17 +102,6 @@ export function SelectIngredientsScreen({navigation}) {
         flexDirection: 'row',
         justifyContent: 'center',
       }}>
-        {/* <Modal
-          // onRequestClose={() => setModalActive(false)}
-          visible={modalActive}
-          animationType="fade"
-          transparent={true}>
-          <View style={styles.outerView}>
-            <View style={styles.modalView}>
-              <Text style={{color: '#444'}}>Testandooooooooooooooooooo</Text>
-            </View>
-          </View>
-        </Modal> */}
       {isLoading ? (
         <ActivityIndicator />
       ) : (
@@ -114,14 +111,9 @@ export function SelectIngredientsScreen({navigation}) {
           extraData={choosedList}
           numColumns={2}
           keyExtractor={({id}, index) => id}
-          ListHeaderComponent={<IngredientSelectHeader />}
+          ListHeaderComponent={<IngredientSelectHeader navigation={navigation} />}
           renderItem={({item}) => (
-            <>
-              {/* <Text style={styles.item} onPress={() => {onPressedItem(item.id)}} >
-              {item.nome} ________{item.id}_______{choosedList[item]}____ {item.media}
-            </Text> */}
               <IngredientItem {...item} onPressedItem={onPressedItem} />
-            </>
           )}
         />
       )}
@@ -142,13 +134,17 @@ export function SelectIngredientsScreen({navigation}) {
             <IngredientSelected {...item} onPressedItem={onPressedItem} />
           )}
         />
-        <TouchableOpacity
-          style={styles.btnNext}
-          onPress={() => handleModal()}>
+        <TouchableOpacity style={styles.btnNext} onPress={() => handleModal()}>
           <Icon name="arrowright" color={'#F54749'} size={40} />
         </TouchableOpacity>
-        <ModalIngredients modalActive={modalActive} setModalActive={setModalActive} choosedList={choosedList} onPressedItem={onPressedItem} />
-        
+        <ModalIngredients
+          modalActive={modalActive}
+          setModalActive={setModalActive}
+          choosedList={choosedList}
+          onPressedItem={onPressedItem}
+          navigation={navigation}
+          getIdIngredients={getIdIngredients}
+        />
       </ImageBackground>
     </View>
   );
@@ -182,17 +178,17 @@ const styles = StyleSheet.create({
     elevation: 5,
     marginBottom: 16,
   },
-  outerView:{
+  outerView: {
     flex: 1,
     justifyContent: 'center',
     alignItems: 'center',
-    backgroundColor: 'rgba(0,0,0,0.5)'
+    backgroundColor: 'rgba(0,0,0,0.5)',
   },
-  modalView:{
+  modalView: {
     backgroundColor: '#fff',
-    borderRadius:3 ,
+    borderRadius: 3,
     padding: 35,
     width: 200,
-    alignItems:'center'
-  }
+    alignItems: 'center',
+  },
 });

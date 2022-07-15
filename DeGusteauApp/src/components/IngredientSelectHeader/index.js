@@ -9,11 +9,11 @@ import {
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
-export default function IngredientSelectHeader() {
+export default function IngredientSelectHeader({navigation}) {
   return (
     <>
       <View style={styles.wrapper}>
-        <TouchableOpacity style={styles.back}>
+        <TouchableOpacity style={styles.back} onPress={()=> navigation.goBack()}>
           <Icon name="leftcircleo" color={'#F54749'} size={24} />
         </TouchableOpacity>
         <View>

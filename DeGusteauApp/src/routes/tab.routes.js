@@ -2,6 +2,7 @@ import React from 'react';
 
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import Icon from 'react-native-vector-icons/Feather';
+import Iconic from 'react-native-vector-icons/MaterialCommunityIcons'
 
 const {Screen, Navigator} = createBottomTabNavigator();
 
@@ -11,6 +12,7 @@ import {HomeScreen} from '../screens/HomeScreen';
 import {SelectIngredientsScreen} from '../screens/SelectIngredientsScreen';
 import {RecipeScreen} from '../screens/RecipeScreen';
 import {OnBoardingScreen} from '../screens/OnBoardingScreen';
+import {FridgeScreen} from '../screens/FridgeScreen'
 
 import IconMenu from '../components/IconMenu';
 
@@ -49,6 +51,8 @@ export function TabRoutes() {
           ),
         }}
       />
+
+      <Screen name='Geladeira' component={FridgeScreen} options={{tabBarIcon:({size,color}) => (<Iconic name='fridge-industrial-outline' color={color} size={size} />)}} />
     </Navigator>
   );
 }

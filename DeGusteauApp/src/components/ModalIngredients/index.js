@@ -8,6 +8,8 @@ export default function ModalIngredients({
   setModalActive,
   choosedList,
   onPressedItem,
+  navigation,
+  getIdIngredients
 }) {
   return (
     <Modal
@@ -33,7 +35,7 @@ export default function ModalIngredients({
             <TouchableOpacity style={styles.backBtn} onPress={()=> setModalActive(false)}>
               <Text style={styles.backText} >Voltar</Text>
             </TouchableOpacity>
-            <TouchableOpacity style={styles.nextBtn} >
+            <TouchableOpacity style={styles.nextBtn} onPress={() => {setModalActive(false),navigation.navigate('IngredientsResultScreen',{ingredientesArray: getIdIngredients(choosedList)})}} >
               <Text style={styles.nextText} >Confirmar</Text>
             </TouchableOpacity>
           </View>
