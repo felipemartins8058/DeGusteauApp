@@ -1,12 +1,12 @@
 import React from 'react'
 import { Image, TouchableOpacity, View, StyleSheet, Text } from 'react-native'
 
-export default function IngredientItem({id,nome,media,isSelected, onPressedItem}) {
+export default function IngredientItem({id,nome,media,isSelected, onPressedItem, filename}) {
     
     return(
         <TouchableOpacity style={[styles.wrapper]} onPress={() => onPressedItem(id)} >
             <View style={styles.imgWrapper} >
-                <Image style={styles.img} source={require('../../images/leite.png')} />
+                <Image style={styles.img} source={{uri: `http://18.230.138.105:5000/image/${filename}`}} />
             </View>
             <View style={styles.inputWrapper} >
                 <Text style={styles.text} >{nome.toString().charAt(0).toUpperCase() + nome.toString().slice(1)}</Text>
@@ -26,7 +26,8 @@ const styles = StyleSheet.create({
         alignItems:'center'
     },
     img:{
-        
+        width:100,
+        height: 100
     },
     inputWrapper: {
         backgroundColor:"#FDC65E",
