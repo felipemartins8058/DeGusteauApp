@@ -161,12 +161,12 @@ export function RecipeScreen({navigation,route, navigation: { goBack }}) {
                 <FlatList 
                   // INGREDIENTES - VALORES
                   data={mediaData}
-                  style={{ flex: 1, width:'100%',flexDirection: 'row'}}
+                  style={{ flex: 1, width:'100%',flexDirection: 'row', flexWrap:'wrap',justifyContent:'space-around'}}
                   keyExtractor={({ nome }, index) => nome}
                   listKey={({ nome }, index) => nome}
                   renderItem={({ item }) => (
                     <>
-                      <View style={{ alignItems: 'center', paddingRight: 24, paddingTop: 14}}>
+                      <View style={{flex:1, alignItems: 'center', paddingRight: 24, paddingTop: 14}}>
                           <Text style={styles.corpo}>{item.nome[0].toUpperCase() + item.nome.substring(1)}</Text>
                           <Text style={styles.corpo}>R${item.media}</Text>
                           <Text style={styles.corpo}>{item.unidade}</Text>
