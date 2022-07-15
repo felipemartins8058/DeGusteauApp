@@ -44,7 +44,7 @@ export function IngredientPrice({navigation,route, navigation: { goBack }}) {
                                 <Icon name='leftcircleo' color={'#F54749'} size={24} />
                             </TouchableHighlight>
 
-                            <Text style={{flex: 1,color: '#444', fontSize: 32}}> {route.params.nome_ingrediente.toUpperCase()}:</Text>
+                            <Text style={{flex: 1,color: '#444', fontSize: 32}}> {route.params.nome_ingrediente[0].toUpperCase()  + route.params.nome_ingrediente.substring(1)}:</Text>
                         </View>
                     </View>
                 }
