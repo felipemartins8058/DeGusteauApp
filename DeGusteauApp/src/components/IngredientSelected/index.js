@@ -5,7 +5,6 @@ export default function IngredientSelected({id, nome, isSelected, media, filenam
     return(
         <TouchableOpacity style={styles.btn} onPress={() => onPressedItem(id)}>
             <Image style={styles.img} source={{uri: `http://18.230.138.105:5000/image/${filename}`}} />
-            <Text>{nome}</Text>
         </TouchableOpacity>
     )
 }
