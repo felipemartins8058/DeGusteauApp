@@ -3,7 +3,7 @@ import {View, Image, Text, StyleSheet, TouchableOpacity} from 'react-native';
 
 import Icon from 'react-native-vector-icons/AntDesign';
 
-export default function SmallCard({navigation, nome, tempo_preparo, id}) {
+export default function SmallCard({navigation, nome, tempo_preparo, id, filename}) {
   return (
     <TouchableOpacity
       style={styles.smallcard}
@@ -12,13 +12,13 @@ export default function SmallCard({navigation, nome, tempo_preparo, id}) {
       }>
       <Image
         style={styles.imageRecipe}
-        source={require('../../images/imagem.png')}
+        source={{ uri: `http://18.230.138.105:5000/image/${filename}`, }}
       />
       <View style={styles.contentRecipe}>
-        <Text>{nome} {id}</Text>
+        <Text>{nome}</Text>
         <Text>
           <Icon name="clockcircle" />
-          <Text>{tempo_preparo}</Text>
+          <Text> {tempo_preparo}</Text>
         </Text>
       </View>
     </TouchableOpacity>
@@ -29,7 +29,7 @@ styles = StyleSheet.create({
   smallcard: {
     flex: 1,
     flexDirection: 'column',
-    marginHorizontal: 8,
+    margin: 8,
     borderRadius: 16,
     overflow: 'hidden',
     elevation: 5,
@@ -42,7 +42,7 @@ styles = StyleSheet.create({
   contentRecipe: {
     flex: 1,
     backgroundColor: '#FDC65E',
-    paddingHorizontal: 4,
-    paddingVertical: 8,
+    paddingHorizontal: 10,
+    paddingVertical: 10,
   },
 });

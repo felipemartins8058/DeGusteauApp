@@ -16,6 +16,7 @@ export default function ExpandableCard({
   tempo_preparo,
   modoPreparo,
   ingredientes,
+  filename,
   navigation,
 }) {
   const [isExpanded, setIsExpanded] = React.useState(false);
@@ -37,16 +38,15 @@ export default function ExpandableCard({
   return (
     <View style={[styles.card, {height: layoutHeight}]}>
       <ImageBackground
-        source={require('../../images/imagem.png')}
+        source={{ uri: `http://18.230.138.105:5000/image/${filename}`, }}
         style={styles.imageBackground}>
         <View style={styles.gradientView} />
         <View style={styles.timeWrapper}>
-          <Icon style={{marginRight: 8}} name="clockcircle" size={16} />
-          <Text>{tempo_preparo}</Text>
+          <Icon style={{marginRight: 8}} name="clockcircle" size={16} color={'#FFF'} />
+          <Text style={styles.timeText}>{tempo_preparo}</Text>
         </View>
         <View style={styles.titleWrapper}>
           <Text style={styles.cardTitle}>{nome}</Text>
-          <Text>Lanche Rápido</Text>
         </View>
       </ImageBackground>
 
@@ -97,7 +97,7 @@ const styles = StyleSheet.create({
   },
   viewExpandBtn: {
     position: 'absolute',
-    bottom: -10,
+    bottom: -16,
     display: 'flex',
     width: '100%',
     justifyContent: 'center',
@@ -137,23 +137,27 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     justifyContent: 'space-between',
     alignItems: 'center',
-    padding: 8,
+    padding: 16,
   },
   timeWrapper: {
     flex: 1,
     flexDirection: 'row',
     width: '100%',
     justifyContent: 'flex-end',
-    alignItems: 'flex-end',
+    alignItems: 'flex-start',
     justifyItems: 'center',
     alignContent: 'center',
-    padding: 8,
+    padding: 14,
   },
   text: {
     color: '#444',
   },
   ingredienteTitle: {
     color: '#444',
+    fontWeight: 'bold',
+  },
+  timeText: {
+    color: '#fff',
     fontWeight: 'bold',
   },
   cardTitle: {

@@ -15,6 +15,9 @@ export function HomeScreen({navigation}) {
   const [isLoadingReceitas, setLoadingReceitas] = useState(true);
   const [receitasData, setReceitasData] = useState([]);
 
+  const [isLoadingTodasReceitas, setLoadingTodasReceitas] = useState(true);
+  const [todasReceitasData, setTodasReceitasData] = useState([]);
+
   const getData = async () => {
     try {
         const jsonValue = await AsyncStorage.getItem('ArrayPreferencia');
@@ -49,11 +52,30 @@ export function HomeScreen({navigation}) {
    } finally {
     setLoadingReceitas(false);
    }
- };
+  };
+
+  const getTodasReceitas = async () => {
+    try {
+      const response = await fetch('http://18.230.138.105:5000/receitas/todas', {
+       method: 'GET',
+       headers: {
+         Accept: 'application/json',
+         'Content-Type': 'application/json',
+       }}
+     );
+     const json = await response.json();
+     setTodasReceitasData(json);
+   } catch (error) {
+     console.error(error);
+   } finally {
+    setLoadingTodasReceitas(false);
+   }
+  };
 
   useEffect(() => {
     getData();
     getReceitas();
+    getTodasReceitas();
   }, []);
 
   return (
@@ -64,7 +86,7 @@ export function HomeScreen({navigation}) {
       ) : (
         <FlatList
           ListHeaderComponent={<HeaderHome navigation={navigation}/>}
-          ListFooterComponent={<FooterHome receitasDataArray={receitasData} navigation={navigation} />}
+          ListFooterComponent={<FooterHome receitasDataArray={todasReceitasData} navigation={navigation} />}
           data={receitasData}
           keyExtractor={({id}, index) => id}
           renderItem={({item}) => <ExpandableCard {...item} navigation={navigation} />}

@@ -7,7 +7,7 @@ export function RecipeScreen({navigation,route, navigation: { goBack }}) {
 
   const [isLoadingReceita, setLoadingReceita] = useState(true);
   const [receitaData, setReceitaData] = useState([]);
- 
+  
   const [isLoadingReceitaIngredientes, setLoadingReceitaIngredientes] = useState(true);
   const [receitaIngredientesData, setReceitaIngredientesData] = useState([]);
 
@@ -98,18 +98,21 @@ export function RecipeScreen({navigation,route, navigation: { goBack }}) {
                   keyExtractor={({ id }, index) => id}
                   renderItem={({ item }) => (
                     <>
-                    <View style={{ flex: 1, width: '100%', flexDirection: 'row',alignItems: 'center', paddingBottom: 8}}>
+                    <View style={{ flex: 1, width: '100%', flexDirection: 'row',alignItems: 'flex-start', paddingBottom: 8}}>
                       <TouchableHighlight style={{ borderRadius: 50, padding: 8}} underlayColor="#FFEECA" activeOpacity={0.8} onPress={() => goBack()}>  
                           <Icon name='leftcircleo' color={'#F54749'} size={24} />
                       </TouchableHighlight>
 
-                      <Text style={styles.title}> {item.nome}</Text>
+                      <View style={{flex: 1, paddingLeft: 8}}>
+                        <Text style={styles.title}>{item.nome}</Text>
+                      </View>
+                      
                     </View>
 
                     <Text><Icon name='clockcircleo' /> {item.tempo_preparo}</Text>
 
                     <View style={{width: '100%', paddingVertical: 24}}>
-                      <Image style={{width: '100%'}} source={require('../images/video.png')}/>
+                      <Image style={styles.image} source={{ uri: `http://18.230.138.105:5000/image/${item.filename}`, }}/>
                     </View>
 
                     <View style={{flexDirection: 'row',alignItems: 'center'}}>
@@ -132,16 +135,16 @@ export function RecipeScreen({navigation,route, navigation: { goBack }}) {
           renderItem={({item}) => 
           // INGREDIENTES - QUANTIDADES
             <>
-              <View style={{ flex: 1, width: '100%', flexDirection: 'row', justifyContent: 'space-between', paddingHorizontal: 24}}>
-                <Text style={{color: '#444', width: '55%' }}>• {item.nome[0].toUpperCase() + item.nome.substring(1)} : {item.quantidade} {item.unidade}</Text>
+              <View style={{ flex: 1, width: '100%', flexDirection: 'row', alignItems: 'center', paddingHorizontal: 24}}>
+                <Text style={{color: '#444', flex: 1 }}>• {item.nome[0].toUpperCase() + item.nome.substring(1)} : {item.quantidade} {item.unidade}</Text>
                 
-                <TouchableHighlight style={{ borderRadius: 16, padding: 8}} underlayColor="#FFEECA"  activeOpacity={0.8} onPress={() =>
+                <TouchableHighlight style={{ borderRadius: 30, padding: 4}} underlayColor="#FFEECA"  activeOpacity={0.8} onPress={() =>
                     navigation.navigate('IngredientPrice', { 
                       id_ingrediente: item.id,
                       nome_ingrediente: item.nome,
                     })}>
-                    <View>
-                      <Text style={{color: '#F54749'}}><Icon name='pushpino' color={'#F54749'} size={14} /> Onde encontrar </Text>
+                    <View style={styles.nextBtn}>
+                      <Text style={{color: '#Fff', fontSize: 12}}><Icon name='pushpino' color={'#Fff'} size={14} /> Ver lojas</Text>
                     </View>
                 </TouchableHighlight>
               </View>
@@ -228,5 +231,21 @@ const styles = StyleSheet.create({
   icon: {
     width:'100%',
     height:'100%'
+  },
+  nextBtn:{
+    backgroundColor: '#F54749',
+    paddingHorizontal: 24,
+    paddingVertical: 10,
+    borderRadius: 30
+  },
+  image: {
+    flex: 0,
+    height: 160,
+    resizeMode: 'cover',
+    justifyContent: 'center',
+    alignItems: 'center',
+    borderRadius: 20,
+    overflow: 'hidden',
+    width: '100%',
   },
 })
