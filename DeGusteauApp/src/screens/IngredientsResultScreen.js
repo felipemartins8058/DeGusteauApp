@@ -57,7 +57,6 @@ export function IngredientsResultScreen({navigation, route}) {
       setIsLoadingAllRecipes(false)
     }
   }
-
   React.useEffect(() => {
     getRecipes();
     getAllRecipes();
@@ -101,7 +100,6 @@ export function IngredientsResultScreen({navigation, route}) {
           }
         />
       )}
-      <Text style={{color: '#444'}}> Tela de merda</Text>
     </View>
   );
 }
