@@ -15,7 +15,7 @@ export default function SmallCard({navigation, nome, tempo_preparo, id, filename
         source={{ uri: `http://18.230.138.105:5000/image/${filename}`, }}
       />
       <View style={styles.contentRecipe}>
-        <Text>{nome}</Text>
+        <Text style={{marginBottom:4}}>{nome}</Text>
         <Text>
           <Icon name="clockcircle" />
           <Text> {tempo_preparo}</Text>
@@ -42,7 +42,7 @@ styles = StyleSheet.create({
   contentRecipe: {
     flex: 1,
     backgroundColor: '#FDC65E',
-    paddingHorizontal: 10,
+    paddingHorizontal: 16,
     paddingVertical: 10,
   },
 });

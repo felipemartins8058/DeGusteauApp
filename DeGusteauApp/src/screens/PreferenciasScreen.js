@@ -99,8 +99,8 @@ export function PreferenciasScreen({navigation,route, navigation: { goBack }}) {
                             ) 
                             :
                             (
-                            <CheckBox style={{ transform: [{ scaleX: 1.5 }, { scaleY: 1.5 }] }}
-                                tintColors={{ true: '#F15927', false: 'black' }}
+                            <CheckBox style={{ transform: [{ scaleX: 1.3 }, { scaleY: 1.3 }] }}
+                                tintColors={{ true: '#F15927', false: '#9f9f9f' }}
                                 value={checked.includes(item.id)}
                                 onChange={() => {
                                     const newIds = [...checked];
