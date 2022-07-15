@@ -8,6 +8,7 @@ import {HomeScreen} from '../screens/HomeScreen';
 import {RecipeScreen} from '../screens/RecipeScreen';
 import {IngredientPrice} from '../screens/IngredientPrice';
 import { PreferenciasScreen } from '../screens/PreferenciasScreen';
+import { IngredientsResultScreen } from '../screens/IngredientsResultScreen';
 
 export const StackReceitas = () => {
     return (
@@ -16,6 +17,7 @@ export const StackReceitas = () => {
             <Screen name="HomeScreen" component={HomeScreen} />
             <Screen name="RecipeScreen" component={RecipeScreen} />
             <Screen name="IngredientPrice" component={IngredientPrice} />
+            <Screen name="IngredientsResultScreen" component={IngredientsResultScreen} />
         </Navigator>
     )
 }
